@@ -2,7 +2,7 @@
 import { createInterface } from 'node:readline/promises';
 import { stdin as input, stdout as output } from 'node:process';
 import { fileURLToPath } from 'node:url';
-import { dirname, join } from 'node:path';
+import { basename, dirname, join } from 'node:path';
 import { runNew } from '../src/orchestrate.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -27,9 +27,9 @@ try {
   console.log(`\n✓ Created ${result.projectDir}`);
   if (result.ghSkipped) {
     console.log('  gh not authenticated — skipped remote creation.');
-    console.log(`  Run: gh auth login && gh repo create ${OWNER}/<name> --${result.visibility} --source=${result.projectDir} --push`);
+    console.log(`  Run: gh auth login && gh repo create ${OWNER}/${basename(result.projectDir)} --${result.visibility} --source=${result.projectDir} --push`);
   } else {
-    console.log(`  https://github.com/${OWNER}/<name>`);
+    console.log(`  https://github.com/${OWNER}/${basename(result.projectDir)}`);
   }
   console.log(`\nNext: cd into the project and open it in Claude Code.`);
 } catch (err) {

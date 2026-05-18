@@ -14,5 +14,6 @@
   },
   "license": "MIT",
   "private": true,
+  "files": ["bin", "src", "templates", "templates/.gitignore"],
   "repository": "github:manyrocks/venture"
 }
