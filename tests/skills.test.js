@@ -46,3 +46,10 @@ test('prd-writer skill is well-formed', async () => {
   assert.match(c, /anti-goals/i, 'must mention anti-goals');
   assert.match(c, /success metric/i, 'must mention success metric');
 });
+
+test('brainstorming skill is well-formed', async () => {
+  const c = await readSkill('brainstorming');
+  assertSkillShape(c, 'brainstorming');
+  assert.match(c, /docs\/specs/, 'must reference docs/specs output');
+  assert.match(c, /2.?3 approaches|2-3 approaches/i, 'must require multiple approaches');
+});
