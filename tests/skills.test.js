@@ -38,3 +38,11 @@ test('goals-setter skill is well-formed', async () => {
   assert.match(c, /\[step-1\]/, 'must show the step-id format');
   assert.match(c, /\/goal/, 'must mention /goal');
 });
+
+test('prd-writer skill is well-formed', async () => {
+  const c = await readSkill('prd-writer');
+  assertSkillShape(c, 'prd-writer');
+  assert.match(c, /docs\/PRD\.md/, 'must reference docs/PRD.md output');
+  assert.match(c, /anti-goals/i, 'must mention anti-goals');
+  assert.match(c, /success metric/i, 'must mention success metric');
+});
