@@ -37,7 +37,7 @@ export async function copyTemplates({ srcDir, destDir, templates, values }) {
 
   for (const tpl of templates) {
     const srcPath = join(srcDir, tpl.src);
-    const destPath = join(destDir, tpl.src);
+    const destPath = join(destDir, tpl.dest ?? tpl.src);
     await mkdir(dirname(destPath), { recursive: true });
     const raw = await readFile(srcPath, 'utf8');
     const out = substitute(raw, values);

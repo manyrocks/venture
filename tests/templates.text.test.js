@@ -41,7 +41,9 @@ test('docs/.gitkeep exists and is empty', async () => {
   assert.equal(s.size, 0);
 });
 
-test('.gitignore declares node_modules', async () => {
-  const g = await readFile(join(TEMPLATES, '.gitignore'), 'utf8');
+test('_gitignore template declares node_modules', async () => {
+  // Shipped as _gitignore to avoid npm rewriting .gitignore on install.
+  // Mapped back to .gitignore in the consumer project by the manifest.
+  const g = await readFile(join(TEMPLATES, '_gitignore'), 'utf8');
   assert.ok(g.includes('node_modules/'));
 });

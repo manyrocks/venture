@@ -5,7 +5,7 @@ export const TEMPLATES = [
   // Always-on
   { src: 'CLAUDE.md',                                         optional: false },
   { src: 'README.md',                                          optional: false },
-  { src: '.gitignore',                                         optional: false },
+  { src: '_gitignore', dest: '.gitignore',                     optional: false },
   { src: 'docs/.gitkeep',                                      optional: false },
   { src: '.claude/skills/setup-followup/SKILL.md',             optional: false },
 

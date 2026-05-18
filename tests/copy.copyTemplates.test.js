@@ -62,6 +62,24 @@ test('creates intermediate directories as needed', async (t) => {
   assert.equal(skill, 'skill body');
 });
 
+test('honors tpl.dest when different from tpl.src', async (t) => {
+  const { root, srcDir, destDir } = await setupFixture();
+  t.after(() => rm(root, { recursive: true, force: true }));
+
+  await writeFile(join(srcDir, '_gitignore'), 'node_modules/\n');
+
+  await copyTemplates({
+    srcDir,
+    destDir,
+    templates: [{ src: '_gitignore', dest: '.gitignore' }],
+    values: {},
+  });
+
+  const out = await readFile(join(destDir, '.gitignore'), 'utf8');
+  assert.equal(out, 'node_modules/\n');
+  await assert.rejects(readFile(join(destDir, '_gitignore'), 'utf8'), /ENOENT/);
+});
+
 test('refuses to overwrite a non-empty destination', async (t) => {
   const { root, srcDir, destDir } = await setupFixture();
   t.after(() => rm(root, { recursive: true, force: true }));

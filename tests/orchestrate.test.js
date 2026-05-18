@@ -36,7 +36,7 @@ async function setupTemplates() {
   await writeFile(join(srcDir, 'CLAUDE.md'), '# <<PROJECT_NAME>>\n<<DESCRIPTION>>');
   await writeFile(join(srcDir, 'README.md'), '# <<PROJECT_NAME>>');
   await writeFile(join(srcDir, 'DESIGN.md'), 'design content');
-  await writeFile(join(srcDir, '.gitignore'), 'node_modules/');
+  await writeFile(join(srcDir, '_gitignore'), 'node_modules/');
   await writeFile(join(srcDir, 'docs', '.gitkeep'), '');
   await writeFile(join(srcDir, '.claude', 'skills', 'setup-followup', 'SKILL.md'), 'setup');
   await writeFile(join(srcDir, '.claude', 'skills', 'brainstorming', 'SKILL.md'), 'brain');
