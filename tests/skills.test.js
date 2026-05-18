@@ -30,3 +30,11 @@ test('setup-followup skill is well-formed', async () => {
   assert.match(c, /rm -rf \.claude\/skills\/setup-followup/, 'must reference its own deletion');
   assert.match(c, /bootstrap-trigger/, 'must reference the trigger block');
 });
+
+test('goals-setter skill is well-formed', async () => {
+  const c = await readSkill('goals-setter');
+  assertSkillShape(c, 'goals-setter');
+  assert.match(c, /docs\/GOAL\.md/, 'must reference docs/GOAL.md output');
+  assert.match(c, /\[step-1\]/, 'must show the step-id format');
+  assert.match(c, /\/goal/, 'must mention /goal');
+});
